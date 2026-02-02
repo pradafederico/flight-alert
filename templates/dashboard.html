@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Flight Price Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h2>✈️ SCL → Canadá | Open-Jaw Monitor</h2>
+
+<canvas id="chart" width="900" height="400"></canvas>
+
+<script>
+const rows = {{ data | tojson }};
+const labels = rows.map(r => r[2]);
+const prices = rows.map(r => r[1]);
+
+new Chart(document.getElementById("chart"), {
+  type: 'line',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: "Precio total USD",
+      data: prices,
+      tension: 0.3
+    }]
+  }
+});
+</script>
+</body>
+</html>
