@@ -51,6 +51,7 @@ from collector import insert_fake_price
 def collect():
     result = insert_fake_price()
     return result
+    
 
 
   
