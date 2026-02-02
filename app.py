@@ -45,4 +45,12 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
 
+from collector import insert_fake_price
+
+@app.route("/collect")
+def collect():
+    result = insert_fake_price()
+    return result
+
+
   
