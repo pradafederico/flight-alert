@@ -24,3 +24,4 @@ def insert_fake_price():
     conn.close()
 
     return f"Inserted {route} - ${price}"
+
