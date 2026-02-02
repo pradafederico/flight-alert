@@ -23,7 +23,4 @@ def insert_fake_price():
     conn.commit()
     conn.close()
 
-    print(f"Inserted {route} - ${price}")
-
-if __name__ == "__main__":
-    insert_fake_price()
+    return f"Inserted {route} - ${price}"
