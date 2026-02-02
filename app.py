@@ -2,10 +2,11 @@ from flask import Flask, render_template_string
 import sqlite3
 import os
 from db import init_db
+from collector import insert_fake_price   # 👈 MOVER ARRIBA
 
 app = Flask(__name__)
 
-# 🔥 CLAVE: inicializa DB al arrancar
+# 🔥 inicializa DB al arrancar
 init_db()
 
 @app.route("/")
@@ -41,16 +42,16 @@ def dashboard():
 
     return render_template_string(html, rows=rows)
 
+# ✅ RUTA /collect DEBE IR ANTES DEL RUN
+@app.route("/collect")
+def collect():
+    return insert_fake_price()
+
+# 🚀 SIEMPRE AL FINAL
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
 
-from collector import insert_fake_price
-
-@app.route("/collect")
-def collect():
-    result = insert_fake_price()
-    return result
     
 
 
